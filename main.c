@@ -121,60 +121,60 @@ void inline VFD_init()
     VFD_putcmd(CMD_CLR);
 }
 
-void RTC_Write(unsigned char address, unsigned char data)
-{
-    RTC_CE_PIN = 1;
-    address = address << 1;
-    address = address | 0x80;
-    for(unsigned char i = 0; i < 8; ++i)
-    {
-        RTC_DATA_PIN = address & 0x01;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 1;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 0;
-        address = address >> 1;
-    }
-    for(unsigned char i = 0; i < 8; ++i)
-    {
-        RTC_DATA_PIN = data & 0x01;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 1;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 0;
-        data = data >> 1;
-    }
-    RTC_CE_PIN = 0;
-}
+// void RTC_Write(unsigned char address, unsigned char data)
+// {
+//     RTC_CE_PIN = 1;
+//     address = address << 1;
+//     address = address | 0x80;
+//     for(unsigned char i = 0; i < 8; ++i)
+//     {
+//         RTC_DATA_PIN = address & 0x01;
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 1;
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 0;
+//         address = address >> 1;
+//     }
+//     for(unsigned char i = 0; i < 8; ++i)
+//     {
+//         RTC_DATA_PIN = data & 0x01;
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 1;
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 0;
+//         data = data >> 1;
+//     }
+//     RTC_CE_PIN = 0;
+// }
 
-unsigned char RTC_Read(unsigned char address)
-{
-    unsigned char data;
-    RTC_CE_PIN = 1;
-    address = address << 1;
-    address = address | 0x81;
-    for(unsigned char i = 0; i < 8; ++i)
-    {
-        RTC_DATA_PIN = address & 0x01;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 1;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 0;
-        address = address >> 1;
-    }
-    RTC_DATA_PIN = 1;
-    for(unsigned char d = 0; d < 8; ++d)
-    {
-        data = data >> 1;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 1;
-        data = data | (((unsigned char)RTC_DATA_PIN) << 7);
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 0;
-    }
-    RTC_CE_PIN = 0;
-    return data;
-}
+// unsigned char RTC_Read(unsigned char address)
+// {
+//     unsigned char data;
+//     RTC_CE_PIN = 1;
+//     address = address << 1;
+//     address = address | 0x81;
+//     for(unsigned char i = 0; i < 8; ++i)
+//     {
+//         RTC_DATA_PIN = address & 0x01;
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 1;
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 0;
+//         address = address >> 1;
+//     }
+//     RTC_DATA_PIN = 1;
+//     for(unsigned char d = 0; d < 8; ++d)
+//     {
+//         data = data >> 1;
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 1;
+//         data = data | (((unsigned char)RTC_DATA_PIN) << 7);
+//         mDelay10uS(1);
+//         RTC_SCLK_PIN = 0;
+//     }
+//     RTC_CE_PIN = 0;
+//     return data;
+// }
 
 void inline DHT_start_signal()
 {
