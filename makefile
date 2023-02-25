@@ -1,5 +1,5 @@
 CC = sdcc
-CFLAGS = -mmcs51
+CFLAGS = -mmcs51 --code-size 8192 --iram-size 256 --xram-size 0
 TARGET = main.hex
 
 .PHONY: all
