@@ -117,7 +117,6 @@ void mDelaymS(unsigned int n)                              // Delay in mS
 {
     while ( n )
     {
-        //mDelayuS( 1000 );
         mDelay10uS(100);
         -- n;
     }
@@ -125,7 +124,6 @@ void mDelaymS(unsigned int n)                              // Delay in mS
 
 void VFD_putc(char c)
 {
-    //__delay_us(100);
     mDelay10uS(10);
     VFD_CS = 0;
     VFD_DATA = c;
@@ -139,7 +137,6 @@ void VFD_putc(char c)
 void inline VFD_putcmd(char cmd)
 {
     VFD_putc(cmd);
-    //__delay_us(1000);
     mDelay10uS(100);
 }
 
@@ -201,22 +198,22 @@ unsigned char RTC_Read(unsigned char address)
     //address = address | 0x81;
     for(unsigned char i = 0; i < 8; ++i)
     {
-        RTC_DATA_PIN = address & 0x01;
-        mDelay10uS(1);
-        RTC_SCLK_PIN = 1;
         mDelay10uS(1);
         RTC_SCLK_PIN = 0;
+        RTC_DATA_PIN = address & 0x01;
         address = address >> 1;
+        mDelay10uS(1);
+        RTC_SCLK_PIN = 1;
     }
     RTC_DATA_PIN = 1;
     for(unsigned char d = 0; d < 8; ++d)
     {
-        data = data >> 1;
-        mDelay10uS(1);
         RTC_SCLK_PIN = 1;
-        data = data | (((unsigned char)RTC_DATA_PIN) << 7);
         mDelay10uS(1);
         RTC_SCLK_PIN = 0;
+        mDelay10uS(1);
+        data = data >> 1;
+        data = data | (((unsigned char)RTC_DATA_PIN) << 7);
     }
     RTC_CE_PIN = 0;
     return data;
@@ -225,9 +222,7 @@ unsigned char RTC_Read(unsigned char address)
 void inline DHT_start_signal()
 {
     DHT_DATA = 0;
-    //__delay_ms(1);
     mDelay10uS(100);
-    //DD_DHT_DATA = 1;
     DHT_DATA = 1;
     //__delay_us(1);
 }
@@ -256,7 +251,6 @@ void inline DHT_read_data()
     {
         while(!DHT_DATA);	//wait for pulse to begin
     
-        //__delay_us(40);
         mDelay10uS(4);
         //LED_TEST = DHT_DATA;
         RH = RH << 1;
@@ -273,7 +267,6 @@ void inline DHT_read_data()
     {
         while(!DHT_DATA);
     
-        //__delay_us(40);
         mDelay10uS(4);
         //LED_TEST = DHT_DATA;
         T = T << 1;
@@ -290,7 +283,6 @@ void inline DHT_read_data()
     {
         while(!DHT_DATA);
     
-        //__delay_us(40);
         mDelay10uS(4);
         //LED_TEST = DHT_DATA;
         chksum = chksum << 1;
@@ -320,11 +312,9 @@ void main(void)
     RTC_SCLK_PIN = 0;   // Idle SCLK low
     RTC_DATA_PIN = 1;   // For safety
  
-    //__delay_ms(10);
     mDelaymS(10);
     VFD_init();
     VFD_printf("Howdy!");
-    //__delay_ms(1000);
     mDelaymS(1000);
 
     //set seconds
@@ -386,14 +376,12 @@ void main(void)
         // READ & DISP - TIME & DATE
         twoDigits = RTC_Read(CMD_R_MIN);
         mDelay10uS(1);
-        //P2 = RTC_Read(CMD_R_MIN);
         time[5]=0x00;
         time[4] = (twoDigits & 0x0F) + 0x30;          // Low minute digit
         time[3] = ((twoDigits >> 4) & 0x07) + 0x30;   // High minute digit 
         time[2] = ':';
         twoDigits = RTC_Read(CMD_R_HOUR);
         mDelay10uS(1);
-        //P2 = RTC_Read(CMD_R_SEC);
         time[1] = (twoDigits & 0x0F) + 0x30;          // Low hour digit
         time[0] = ((twoDigits >> 4) & 0x03) + 0x30;   // High hour digit
 
@@ -419,7 +407,6 @@ void main(void)
         VFD_padding(offsetTime);
         VFD_printf("Time: ");
         VFD_printf(time);
-        //__delay_ms(1000);
         mDelaymS(1000);
         LED_TEST = 0;
 
@@ -427,7 +414,6 @@ void main(void)
         VFD_padding(offsetDate);
         VFD_printf("Date: ");
         VFD_printf(date);
-        // __delay_ms(1000);
         mDelaymS(1000);
         LED_TEST = 1;
 
