@@ -41,6 +41,17 @@ void mDelaymS(unsigned int n);              // Delay in mS
 #define VFD_WR P3_2
 #define VFD_DATA P1
 
+// Button Module
+#define BTN_1 P2_7
+#define BTN_2 P2_6
+#define BTN_3 P2_5
+#define BTN_4 P2_4
+#define BTN_5 P2_3
+#define BTN_6 P2_2
+#define BTN_7 P2_1
+#define BTN_8 P2_0
+#define BTN_DATA P2
+
 // PORTS - Timekeeper
 #define RTC_CE_PIN  P3_4
 #define RTC_DATA_PIN P3_5
@@ -55,8 +66,10 @@ void mDelaymS(unsigned int n);              // Delay in mS
 // Display Commands
 #define CMD_CLR 0x0E
 #define CMD_CRET 0x0D
+#define CMD_ESC 0x1B
+#define CMD_RST 0x49
 
-// // Data Display Relation
+// Data Display Relationships
 #define DISP_LEN        20 
 #define RH_DISP_LEN     14
 #define RH_MAX_OFFSET   (DISP_LEN - RH_DISP_LEN)
@@ -66,7 +79,6 @@ void mDelaymS(unsigned int n);              // Delay in mS
 #define TIME_MAX_OFFSET (DISP_LEN - TIME_DISP_LEN)
 #define DATE_DISP_LEN   16
 #define DATE_MAX_OFFSET (DISP_LEN - DATE_DISP_LEN)
-
 
 // Timekeeper Commands
 #define CMD_R_SEC   0x81
@@ -113,7 +125,7 @@ void mDelay10uS(unsigned int n)  // Delay in units of 10 uS
     }
 }
 
-void mDelaymS(unsigned int n)                              // Delay in mS
+void mDelaymS(unsigned int n)   // Delay in mS
 {
     while ( n )
     {
@@ -140,7 +152,7 @@ void inline VFD_putcmd(char cmd)
     mDelay10uS(100);
 }
 
-void VFD_printf(char* str)
+void VFD_print(char* str)
 {
     unsigned char i = 0;
     while(str[i])
@@ -159,10 +171,17 @@ void inline VFD_padding(unsigned char offset)
     }
 }
 
-void inline VFD_init()
+void inline VFD_clear()
 {
     VFD_putcmd(CMD_CRET);
     VFD_putcmd(CMD_CLR);
+}
+
+void inline VFD_reset()
+{
+    VFD_putcmd(CMD_ESC);
+    VFD_putcmd(CMD_RST);
+    VFD_clear();
 }
 
 void RTC_Write(unsigned char address, unsigned char data)
@@ -218,6 +237,223 @@ unsigned char RTC_Read(unsigned char address)
     RTC_CE_PIN = 0;
     return data;
 }
+
+void RTC_set_time()
+{
+    // Wait for user to lift Time Edit button
+    while(!BTN_2);
+
+    // Display the editable time
+    VFD_clear();
+    VFD_print("Set Time: ");
+    VFD_print(time);
+
+    // Accept input until Time Edit button is pressed again
+    while(BTN_2)
+    {
+        if (!BTN_4) // Up Hr Pressed
+        {
+            while (!BTN_4); // Wait for release
+            ++time[1];
+            if (time[1] > 0x39)
+            {
+                time[1] = 0x30;
+                ++time[0];
+            }
+            if ((time[0] > 0x31) && (time[1] > 0x33)) // Wrap to 00
+            {
+                time[0] = 0x30;
+                time[1] = 0x30;
+            }
+        }
+        else if (!BTN_3) // Down Hr Pressed
+        {
+            while (!BTN_3); // Wait for release
+            --time[1];
+            if (time[1] < 0x30)
+            {
+                time[1] = 0x39;
+                --time[0];
+            }
+            if (time[0] < 0x30) // Wrap to 23
+            {
+                time[0] = 0x32;
+                time[1] = 0x33;
+            }
+        }
+        else if (!BTN_6) // Up Min Pressed
+        {
+            while (!BTN_6); // Wait for release
+            ++time[4];
+            if (time[4] > 0x39)
+            {
+                time[4] = 0x30;
+                ++time[3];
+            }
+            if (time[3] > 0x35) // Wrap to 00
+            {
+                time[3] = 0x30;
+                time[4] = 0x30;
+            }
+        }
+        else if (!BTN_5) // Down Min Pressed
+        {
+            while (!BTN_5); // Wait for release
+            --time[4];
+            if (time[4] < 0x30)
+            {
+                time[4] = 0x39;
+                --time[3];
+            }
+            if (time[3] < 0x30) // Wrap to 59
+            {
+                time[3] = 0x35;
+                time[4] = 0x39;
+            }
+        }
+        else
+        {
+            continue;
+        }
+
+        // Display the edited time
+        VFD_clear();
+        VFD_print("Set Time: ");
+        VFD_print(time);
+    }
+
+    // Wait for Time Edit button to be lifted again
+    while(!BTN_2);
+
+    // Set new time and resume
+    RTC_Write(CMD_W_SEC, 0x00);
+    RTC_Write(CMD_W_MIN, ((time[3] << 4) | (time[4] & 0x0F)));
+    RTC_Write(CMD_W_HOUR, ((time[0] << 4) | (time[1] & 0x0F)));
+}
+
+void RTC_set_date()
+{
+    // Wait for user to lift Date Edit button
+    while(!BTN_1);
+
+    // Display the editable Date
+    VFD_clear();
+    VFD_print("Set Date: ");
+    VFD_print(date);
+
+    // Accept input until Date Edit button is pressed again
+    while(BTN_1)
+    {
+        if (!BTN_4) // Up Date Pressed
+        {
+            while (!BTN_4); // Wait for release
+            ++date[1];
+            if (date[1] > 0x39)
+            {
+                date[1] = 0x31;
+                ++date[0];
+            }
+            if (date[0] > 0x32 && date[1] > 0x31) // Wrap to 01
+            {
+                date[0] = 0x30;
+                date[1] = 0x31;
+            }
+        }
+        else if (!BTN_3) // Down Date Pressed
+        {
+            while (!BTN_3); // Wait for release
+            --date[1];
+            if ((date[1] < 0x30) || ((date[0] < 0x31) && (date[1] < 0x31))) // 1,-1 or 0,0
+            {
+                date[1] = 0x39;
+                --date[0];
+            }
+            if (date[0] < 0x30) // Wrap to 31
+            {
+                date[0] = 0x33;
+                date[1] = 0x31;
+            }
+        }
+        else if (!BTN_6) // Up Month Pressed
+        {
+            while (!BTN_6); // Wait for release
+            ++date[4];
+            if (date[4] > 0x39)
+            {
+                date[4] = 0x30;
+                ++date[3];
+            }
+            if (date[3] > 0x30 && date[4] > 0x32) // Wrap to 01
+            {
+                date[3] = 0x30;
+                date[4] = 0x31;
+            }
+        }
+        else if (!BTN_5) // Down Month Pressed
+        {
+            while (!BTN_5); // Wait for release
+            --date[4];
+            if ((date[4] < 0x30) || ((date[3] < 0x31) && (date[4] < 0x31))) // 1,-1 or 0,0
+            {
+                date[4] = 0x39;
+                --date[3];
+            }
+            if (date[3] < 0x30) // Wrap to 12
+            {
+                date[3] = 0x31;
+                date[4] = 0x32;
+            }
+        }
+        else if (!BTN_8) // Up Year Pressed
+        {
+            while (!BTN_8); // Wait for release
+            ++date[9];
+            if (date[9] > 0x39)
+            {
+                date[9] = 0x30;
+                ++date[8];
+            }
+            if (date[8] > 0x39) // Wrap to 00
+            {
+                date[8] = 0x30;
+                date[9] = 0x30;
+            }
+        }
+        else if (!BTN_7) // Down Year Pressed
+        {
+            while (!BTN_7); // Wait for release
+            --date[9];
+            if (date[9] < 0x30)
+            {
+                date[9] = 0x39;
+                --date[8];
+            }
+            if (date[8] < 0x30) // Wrap to 99
+            {
+                date[8] = 0x39;
+                date[9] = 0x39;
+            }
+        }
+        else
+        {
+            continue;
+        }
+        
+        // Display the edited Date
+        VFD_clear();
+        VFD_print("Set Date: ");
+        VFD_print(date);
+    }
+
+    // Wait for Date Edit button to be lifted again
+    while(!BTN_1);
+
+    // Set new Date and resume
+    RTC_Write(CMD_W_YEAR,  ((date[8] << 4) | (date[9] & 0x0F)));
+    RTC_Write(CMD_W_MONTH, ((date[3] << 4) | (date[4] & 0x0F)));
+    RTC_Write(CMD_W_DATE,  ((date[0] << 4) | (date[1] & 0x0F)));
+}
+
 
 void inline DHT_start_signal()
 {
@@ -303,6 +539,25 @@ void inline DHT_read_data()
     }
 }
 
+// wait_for_edit_1s
+void wait_and_see()
+{
+    for(unsigned int d = 0; d < 10; ++d)
+    {
+        mDelaymS(100);
+        if(!BTN_2)
+        {
+            RTC_set_time();
+            return;
+        }
+        if(!BTN_1)
+        {
+            RTC_set_date();
+            return;
+        }
+    }
+}
+
 void main(void)
 {
     // Init AT89S52 Pins
@@ -311,66 +566,65 @@ void main(void)
     RTC_CE_PIN = 0;     // Disable timekeeper chip 
     RTC_SCLK_PIN = 0;   // Idle SCLK low
     RTC_DATA_PIN = 1;   // For safety
+    BTN_DATA = 0xFF;    //Enable button pullups
  
     mDelaymS(10);
-    VFD_init();
-    VFD_printf("Howdy!");
+    VFD_reset();
+    VFD_print("Howdy!");
     mDelaymS(1000);
 
     //set seconds
-    RTC_Write(CMD_W_SEC, 0x56);
-    //set minutes
-    RTC_Write(CMD_W_MIN, 0x34);
-    //set hours
-    RTC_Write(CMD_W_HOUR, 0x12);
-    //set days
-    RTC_Write(CMD_W_DATE, 0x11);
-    //set months
-    RTC_Write(CMD_W_MONTH, 0x11);
-    //set years
-    RTC_Write(CMD_W_YEAR, 0x11);
+    // RTC_Write(CMD_W_SEC, 0x56);
+    // //set minutes
+    // RTC_Write(CMD_W_MIN, 0x34);
+    // //set hours
+    // RTC_Write(CMD_W_HOUR, 0x12);
+    // //set days
+    // RTC_Write(CMD_W_DATE, 0x11);
+    // //set months
+    // RTC_Write(CMD_W_MONTH, 0x11);
+    // //set years
+    // RTC_Write(CMD_W_YEAR, 0x11);
 
     while(1)
     {    
-        VFD_init();
+        VFD_clear();
 
         // READ & DISP - TEMP & HUMIDITY
-        // DHT_read_data();
-        // humidity[4]=0x00;
-        // humidity[3] = RH % 10 + 0x30;
-        // humidity[2] = '.';
-        // RH = RH / 10;
-        // humidity[1] = RH % 10 + 0x30;
-        // RH = RH / 10;
-        // humidity[0] = RH % 10 + 0x30;
+        DHT_read_data();
+        humidity[4]=0x00;
+        humidity[3] = RH % 10 + 0x30;
+        humidity[2] = '.';
+        RH = RH / 10;
+        humidity[1] = RH % 10 + 0x30;
+        RH = RH / 10;
+        humidity[0] = RH % 10 + 0x30;
 
-        // temperature[0] = '+';
-        // if(T & 0x8000)
-        //     temperature[0] = '-';
-        // T = T & 0x7FFF;
-        // temperature[5]=0x00;
-        // temperature[4] = T % 10 + 0x30;
-        // temperature[3] = '.';
-        // T = T / 10;
-        // temperature[2] = T % 10 + 0x30;
-        // T = T / 10;
-        // temperature[1] = T % 10 + 0x30;
+        temperature[0] = '+';
+        if(T & 0x8000)
+            temperature[0] = '-';
+        T = T & 0x7FFF;
+        temperature[5]=0x00;
+        temperature[4] = T % 10 + 0x30;
+        temperature[3] = '.';
+        T = T / 10;
+        temperature[2] = T % 10 + 0x30;
+        T = T / 10;
+        temperature[1] = T % 10 + 0x30;
 
-        // VFD_init();
-        // VFD_padding(offsetRH);
-        // VFD_printf("Humidity: ");
-        // VFD_printf(humidity);
-        // //__delay_ms(1000);
-        // mDelaymS(1000);
-        // LED_TEST = 0;
+        VFD_clear();
+        VFD_padding(offsetRH);
+        VFD_print("Humidity: ");
+        VFD_print(humidity);
+        wait_and_see();
+        LED_TEST = 0;
 
-        // VFD_init();
-        // VFD_padding(offsetT);
-        // VFD_printf("Temperature: ");
-        // VFD_printf(temperature);
-        // // __delay_ms(1000);
-        // mDelaymS(1000);
-        // LED_TEST = 1;
+        VFD_clear();
+        VFD_padding(offsetT);
+        VFD_print("Temperature: ");
+        VFD_print(temperature);
+        wait_and_see();
+        LED_TEST = 1;
 
 
         // READ & DISP - TIME & DATE
@@ -403,18 +657,18 @@ void main(void)
         date[1] = (twoDigits & 0x0F) + 0x30;    // Low date 
         date[0] = ((twoDigits >> 4)) + 0x30;    // High date
 
-        VFD_init();
+        VFD_clear();
         VFD_padding(offsetTime);
-        VFD_printf("Time: ");
-        VFD_printf(time);
-        mDelaymS(1000);
+        VFD_print("Time: ");
+        VFD_print(time);
+        wait_and_see();
         LED_TEST = 0;
 
-        VFD_init();
+        VFD_clear();
         VFD_padding(offsetDate);
-        VFD_printf("Date: ");
-        VFD_printf(date);
-        mDelaymS(1000);
+        VFD_print("Date: ");
+        VFD_print(date);
+        wait_and_see();
         LED_TEST = 1;
 
 
