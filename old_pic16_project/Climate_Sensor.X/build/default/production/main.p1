@@ -1,0 +1,735 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[v F212 `(v ~T0 @X0 1 tf1`ul ]
+"92 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic.h
+[v __delay `JF212 ~T0 @X0 0 e ]
+[p i __delay ]
+"665 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 665: extern volatile __bit RA3 __attribute__((address(0x2B)));
+[v _RA3 `Vb ~T0 @X0 0 e@43 ]
+"210
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 210: extern volatile unsigned char PORTB __attribute__((address(0x006)));
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"662
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 662: extern volatile __bit RA2 __attribute__((address(0x2A)));
+[v _RA2 `Vb ~T0 @X0 0 e@42 ]
+"659
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 659: extern volatile __bit RA1 __attribute__((address(0x29)));
+[v _RA1 `Vb ~T0 @X0 0 e@41 ]
+"731
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 731: extern volatile __bit TRISA1 __attribute__((address(0x429)));
+[v _TRISA1 `Vb ~T0 @X0 0 e@1065 ]
+[p mainexit ]
+"737
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 737: extern volatile __bit TRISA3 __attribute__((address(0x42B)));
+[v _TRISA3 `Vb ~T0 @X0 0 e@1067 ]
+"734
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 734: extern volatile __bit TRISA2 __attribute__((address(0x42A)));
+[v _TRISA2 `Vb ~T0 @X0 0 e@1066 ]
+"498
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 498: extern volatile unsigned char TRISB __attribute__((address(0x086)));
+[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 54: __asm("INDF equ 00h");
+[; <" INDF equ 00h ;# ">
+"61
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 61: __asm("TMR0 equ 01h");
+[; <" TMR0 equ 01h ;# ">
+"68
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 68: __asm("PCL equ 02h");
+[; <" PCL equ 02h ;# ">
+"75
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 75: __asm("STATUS equ 03h");
+[; <" STATUS equ 03h ;# ">
+"161
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 161: __asm("FSR equ 04h");
+[; <" FSR equ 04h ;# ">
+"168
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 168: __asm("PORTA equ 05h");
+[; <" PORTA equ 05h ;# ">
+"212
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 212: __asm("PORTB equ 06h");
+[; <" PORTB equ 06h ;# ">
+"274
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 274: __asm("EEDATA equ 08h");
+[; <" EEDATA equ 08h ;# ">
+"281
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 281: __asm("EEADR equ 09h");
+[; <" EEADR equ 09h ;# ">
+"288
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 288: __asm("PCLATH equ 0Ah");
+[; <" PCLATH equ 0Ah ;# ">
+"308
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 308: __asm("INTCON equ 0Bh");
+[; <" INTCON equ 0Bh ;# ">
+"386
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 386: __asm("OPTION_REG equ 081h");
+[; <" OPTION_REG equ 081h ;# ">
+"456
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 456: __asm("TRISA equ 085h");
+[; <" TRISA equ 085h ;# ">
+"500
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 500: __asm("TRISB equ 086h");
+[; <" TRISB equ 086h ;# ">
+"562
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 562: __asm("EECON1 equ 088h");
+[; <" EECON1 equ 088h ;# ">
+"606
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f84a.h: 606: __asm("EECON2 equ 089h");
+[; <" EECON2 equ 089h ;# ">
+"14 main.c
+[p x FOSC = XT ]
+"15
+[p x WDTE = OFF ]
+"16
+[p x PWRTE = ON ]
+"17
+[p x CP = OFF ]
+"35
+[; ;main.c: 35: unsigned int RH;
+[v _RH `ui ~T0 @X0 1 e ]
+"36
+[; ;main.c: 36: unsigned char offsetRH = 0;
+[v _offsetRH `uc ~T0 @X0 1 e ]
+[i _offsetRH
+-> -> 0 `i `uc
+]
+"37
+[; ;main.c: 37: char dirRH = 1;
+[v _dirRH `uc ~T0 @X0 1 e ]
+[i _dirRH
+-> -> 1 `i `uc
+]
+"38
+[; ;main.c: 38: unsigned int T;
+[v _T `ui ~T0 @X0 1 e ]
+"39
+[; ;main.c: 39: unsigned char offsetT = 0;
+[v _offsetT `uc ~T0 @X0 1 e ]
+[i _offsetT
+-> -> 0 `i `uc
+]
+"40
+[; ;main.c: 40: char dirT = 1;
+[v _dirT `uc ~T0 @X0 1 e ]
+[i _dirT
+-> -> 1 `i `uc
+]
+"42
+[; ;main.c: 42: void VFD_putc(char c)
+[v _VFD_putc `(v ~T0 @X0 1 ef1`uc ]
+"43
+[; ;main.c: 43: {
+{
+[e :U _VFD_putc ]
+"42
+[; ;main.c: 42: void VFD_putc(char c)
+[v _c `uc ~T0 @X0 1 r1 ]
+"43
+[; ;main.c: 43: {
+[f ]
+"44
+[; ;main.c: 44:     _delay((unsigned long)((100)*((4 *1000000UL)/4000000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000000.0 `ul ]
+"45
+[; ;main.c: 45:     RA3 = 0;
+[e = _RA3 -> -> 0 `i `b ]
+"46
+[; ;main.c: 46:     PORTB = c;
+[e = _PORTB -> _c `uc ]
+"47
+[; ;main.c: 47:     RA2 = 0;
+[e = _RA2 -> -> 0 `i `b ]
+"48
+[; ;main.c: 48:     RA2 = 1;
+[e = _RA2 -> -> 1 `i `b ]
+"49
+[; ;main.c: 49:     RA3 = 1;
+[e = _RA3 -> -> 1 `i `b ]
+"50
+[; ;main.c: 50:     return;
+[e $UE 23  ]
+"51
+[; ;main.c: 51: }
+[e :UE 23 ]
+}
+[v F229 `(v ~T0 @X0 1 tf1`uc ]
+"54
+[; ;main.c: 54: void __attribute__((inline)) VFD_putcmd(char cmd)
+[v _VFD_putcmd `TF229 ~T0 @X0 1 e ]
+"55
+[; ;main.c: 55: {
+{
+[e :U _VFD_putcmd ]
+"54
+[; ;main.c: 54: void __attribute__((inline)) VFD_putcmd(char cmd)
+[v _cmd `uc ~T0 @X0 1 r1 ]
+"55
+[; ;main.c: 55: {
+[f ]
+"56
+[; ;main.c: 56:     VFD_putc(cmd);
+[e ( _VFD_putc (1 _cmd ]
+"57
+[; ;main.c: 57:     _delay((unsigned long)((1000)*((4 *1000000UL)/4000000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000000.0 `ul ]
+"58
+[; ;main.c: 58: }
+[e :UE 24 ]
+}
+"60
+[; ;main.c: 60: void VFD_printf(char* str)
+[v _VFD_printf `(v ~T0 @X0 1 ef1`*uc ]
+"61
+[; ;main.c: 61: {
+{
+[e :U _VFD_printf ]
+"60
+[; ;main.c: 60: void VFD_printf(char* str)
+[v _str `*uc ~T0 @X0 1 r1 ]
+"61
+[; ;main.c: 61: {
+[f ]
+"62
+[; ;main.c: 62:     unsigned char i = 0;
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+"63
+[; ;main.c: 63:     while(str[i])
+[e $U 26  ]
+[e :U 27 ]
+"64
+[; ;main.c: 64:     {
+{
+"65
+[; ;main.c: 65:         VFD_putc(str[i]);
+[e ( _VFD_putc (1 *U + _str * -> _i `ux -> -> # *U _str `ui `ux ]
+"66
+[; ;main.c: 66:         i++;
+[e ++ _i -> -> 1 `i `uc ]
+"67
+[; ;main.c: 67:     }
+}
+[e :U 26 ]
+"63
+[; ;main.c: 63:     while(str[i])
+[e $ != -> *U + _str * -> _i `ux -> -> # *U _str `ui `ux `i -> 0 `i 27  ]
+[e :U 28 ]
+"68
+[; ;main.c: 68: }
+[e :UE 25 ]
+}
+[v F235 `(v ~T0 @X0 1 tf1`uc ]
+"70
+[; ;main.c: 70: void __attribute__((inline)) VFD_padding(unsigned char offset)
+[v _VFD_padding `TF235 ~T0 @X0 1 e ]
+"71
+[; ;main.c: 71: {
+{
+[e :U _VFD_padding ]
+"70
+[; ;main.c: 70: void __attribute__((inline)) VFD_padding(unsigned char offset)
+[v _offset `uc ~T0 @X0 1 r1 ]
+"71
+[; ;main.c: 71: {
+[f ]
+"72
+[; ;main.c: 72:     while(offset != 0)
+[e $U 30  ]
+[e :U 31 ]
+"73
+[; ;main.c: 73:     {
+{
+"74
+[; ;main.c: 74:         VFD_putc(' ');
+[e ( _VFD_putc (1 -> -> 32 `ui `uc ]
+"75
+[; ;main.c: 75:         offset--;
+[e -- _offset -> -> 1 `i `uc ]
+"76
+[; ;main.c: 76:     }
+}
+[e :U 30 ]
+"72
+[; ;main.c: 72:     while(offset != 0)
+[e $ != -> _offset `i -> 0 `i 31  ]
+[e :U 32 ]
+"77
+[; ;main.c: 77: }
+[e :UE 29 ]
+}
+[v F238 `(v ~T0 @X0 1 tf ]
+"79
+[; ;main.c: 79: void __attribute__((inline)) VFD_init()
+[v _VFD_init `TF238 ~T0 @X0 1 e ]
+"80
+[; ;main.c: 80: {
+{
+[e :U _VFD_init ]
+[f ]
+"81
+[; ;main.c: 81:     VFD_putcmd(0x0D);
+[e ( _VFD_putcmd (1 -> -> 13 `i `uc ]
+"82
+[; ;main.c: 82:     VFD_putcmd(0x0E);
+[e ( _VFD_putcmd (1 -> -> 14 `i `uc ]
+"83
+[; ;main.c: 83: }
+[e :UE 33 ]
+}
+[v F240 `(v ~T0 @X0 1 tf ]
+"86
+[; ;main.c: 86: void __attribute__((inline)) DHT_read_data()
+[v _DHT_read_data `TF240 ~T0 @X0 1 e ]
+"87
+[; ;main.c: 87: {
+{
+[e :U _DHT_read_data ]
+[f ]
+"89
+[; ;main.c: 89:     for(unsigned char i = 0; i < 16; i++)
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 16 `i 35  ]
+[e $U 36  ]
+[e :U 35 ]
+"90
+[; ;main.c: 90:     {
+{
+"91
+[; ;main.c: 91:         while(!RA1);
+[e $U 38  ]
+[e :U 39 ]
+[e :U 38 ]
+[e $ ! _RA1 39  ]
+[e :U 40 ]
+"93
+[; ;main.c: 93:         _delay((unsigned long)((40)*((4 *1000000UL)/4000000.0)));
+[e ( __delay (1 -> * -> -> 40 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000000.0 `ul ]
+"94
+[; ;main.c: 94:         RH = RH << 1;
+[e = _RH << _RH -> 1 `i ]
+"95
+[; ;main.c: 95:         if(RA1)
+[e $ ! _RA1 41  ]
+"96
+[; ;main.c: 96:         {
+{
+"97
+[; ;main.c: 97:             RH = RH | 1;
+[e = _RH | _RH -> -> 1 `i `ui ]
+"98
+[; ;main.c: 98:         }
+}
+[e :U 41 ]
+"100
+[; ;main.c: 100:         while(RA1);
+[e $U 42  ]
+[e :U 43 ]
+[e :U 42 ]
+[e $ _RA1 43  ]
+[e :U 44 ]
+"101
+[; ;main.c: 101:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 16 `i 35  ]
+[e :U 36 ]
+}
+"104
+[; ;main.c: 104:     for(unsigned char i = 0; i < 16; i++)
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 16 `i 45  ]
+[e $U 46  ]
+[e :U 45 ]
+"105
+[; ;main.c: 105:     {
+{
+"106
+[; ;main.c: 106:         while(!RA1);
+[e $U 48  ]
+[e :U 49 ]
+[e :U 48 ]
+[e $ ! _RA1 49  ]
+[e :U 50 ]
+"108
+[; ;main.c: 108:         _delay((unsigned long)((40)*((4 *1000000UL)/4000000.0)));
+[e ( __delay (1 -> * -> -> 40 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000000.0 `ul ]
+"109
+[; ;main.c: 109:         T = T << 1;
+[e = _T << _T -> 1 `i ]
+"110
+[; ;main.c: 110:         if(RA1)
+[e $ ! _RA1 51  ]
+"111
+[; ;main.c: 111:         {
+{
+"112
+[; ;main.c: 112:             T = T | 1;
+[e = _T | _T -> -> 1 `i `ui ]
+"113
+[; ;main.c: 113:         }
+}
+[e :U 51 ]
+"115
+[; ;main.c: 115:         while(RA1);
+[e $U 52  ]
+[e :U 53 ]
+[e :U 52 ]
+[e $ _RA1 53  ]
+[e :U 54 ]
+"116
+[; ;main.c: 116:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 16 `i 45  ]
+[e :U 46 ]
+}
+"119
+[; ;main.c: 119:     unsigned char chksum;
+[v _chksum `uc ~T0 @X0 1 a ]
+"120
+[; ;main.c: 120:     for(unsigned char i = 0; i < 8; i++)
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 8 `i 55  ]
+[e $U 56  ]
+[e :U 55 ]
+"121
+[; ;main.c: 121:     {
+{
+"122
+[; ;main.c: 122:         while(!RA1);
+[e $U 58  ]
+[e :U 59 ]
+[e :U 58 ]
+[e $ ! _RA1 59  ]
+[e :U 60 ]
+"124
+[; ;main.c: 124:         _delay((unsigned long)((40)*((4 *1000000UL)/4000000.0)));
+[e ( __delay (1 -> * -> -> 40 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000000.0 `ul ]
+"125
+[; ;main.c: 125:         chksum = chksum << 1;
+[e = _chksum -> << -> _chksum `i -> 1 `i `uc ]
+"126
+[; ;main.c: 126:         if(RA1)
+[e $ ! _RA1 61  ]
+"127
+[; ;main.c: 127:         {
+{
+"128
+[; ;main.c: 128:             chksum = chksum | 1;
+[e = _chksum -> | -> _chksum `i -> 1 `i `uc ]
+"129
+[; ;main.c: 129:         }
+}
+[e :U 61 ]
+"131
+[; ;main.c: 131:         while(RA1);
+[e $U 62  ]
+[e :U 63 ]
+[e :U 62 ]
+[e $ _RA1 63  ]
+[e :U 64 ]
+"132
+[; ;main.c: 132:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 55  ]
+[e :U 56 ]
+}
+"135
+[; ;main.c: 135:     unsigned char res = (RH & 0xFF) + (RH >> 8) + (T & 0xFF) + (T >> 8);
+[v _res `uc ~T0 @X0 1 a ]
+[e = _res -> + + + & _RH -> -> 255 `i `ui >> _RH -> 8 `i & _T -> -> 255 `i `ui >> _T -> 8 `i `uc ]
+"136
+[; ;main.c: 136:     if (res != chksum)
+[e $ ! != -> _res `i -> _chksum `i 65  ]
+"137
+[; ;main.c: 137:     {
+{
+"138
+[; ;main.c: 138:         RH = 0xDEAD;
+[e = _RH -> 57005 `ui ]
+"139
+[; ;main.c: 139:         T = 0xBEEF;
+[e = _T -> 48879 `ui ]
+"140
+[; ;main.c: 140:     }
+}
+[e :U 65 ]
+"141
+[; ;main.c: 141: }
+[e :UE 34 ]
+}
+[v F247 `(v ~T0 @X0 1 tf ]
+"143
+[; ;main.c: 143: void __attribute__((inline)) DHT_start_signal()
+[v _DHT_start_signal `TF247 ~T0 @X0 1 e ]
+"144
+[; ;main.c: 144: {
+{
+[e :U _DHT_start_signal ]
+[f ]
+"145
+[; ;main.c: 145:     TRISA1 = 0;
+[e = _TRISA1 -> -> 0 `i `b ]
+"146
+[; ;main.c: 146:     RA1 = 0;
+[e = _RA1 -> -> 0 `i `b ]
+"147
+[; ;main.c: 147:     _delay((unsigned long)((1)*((4 *1000000UL)/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000.0 `ul ]
+"148
+[; ;main.c: 148:     TRISA1 = 1;
+[e = _TRISA1 -> -> 1 `i `b ]
+"149
+[; ;main.c: 149:     RA1 = 1;
+[e = _RA1 -> -> 1 `i `b ]
+"150
+[; ;main.c: 150:     _delay((unsigned long)((1)*((4 *1000000UL)/4000000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000000.0 `ul ]
+"151
+[; ;main.c: 151: }
+[e :UE 66 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"153
+[; ;main.c: 153: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
+"154
+[; ;main.c: 154: {
+{
+[e :U _main ]
+[f ]
+"155
+[; ;main.c: 155:     TRISA3 = 0;
+[e = _TRISA3 -> -> 0 `i `b ]
+"156
+[; ;main.c: 156:     TRISA2 = 0;
+[e = _TRISA2 -> -> 0 `i `b ]
+"157
+[; ;main.c: 157:     TRISB = 0x00;
+[e = _TRISB -> -> 0 `i `uc ]
+"158
+[; ;main.c: 158:     TRISA1 = 1;
+[e = _TRISA1 -> -> 1 `i `b ]
+"159
+[; ;main.c: 159:     RA1 = 1;
+[e = _RA1 -> -> 1 `i `b ]
+"161
+[; ;main.c: 161:     _delay((unsigned long)((10)*((4 *1000000UL)/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000.0 `ul ]
+"162
+[; ;main.c: 162:     VFD_init();
+[e ( _VFD_init ..  ]
+"163
+[; ;main.c: 163:     VFD_printf("Howdy!");
+[e ( _VFD_printf (1 :s 1C ]
+"164
+[; ;main.c: 164:     _delay((unsigned long)((1000)*((4 *1000000UL)/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000.0 `ul ]
+"166
+[; ;main.c: 166:     while(1)
+[e :U 69 ]
+"167
+[; ;main.c: 167:     {
+{
+"168
+[; ;main.c: 168:         VFD_init();
+[e ( _VFD_init ..  ]
+"170
+[; ;main.c: 170:         DHT_start_signal();
+[e ( _DHT_start_signal ..  ]
+"171
+[; ;main.c: 171:         while(RA1)
+[e $U 71  ]
+[e :U 72 ]
+"172
+[; ;main.c: 172:         {
+{
+"174
+[; ;main.c: 174:         }
+}
+[e :U 71 ]
+"171
+[; ;main.c: 171:         while(RA1)
+[e $ _RA1 72  ]
+[e :U 73 ]
+"175
+[; ;main.c: 175:         while(!RA1)
+[e $U 74  ]
+[e :U 75 ]
+"176
+[; ;main.c: 176:         {
+{
+"178
+[; ;main.c: 178:         }
+}
+[e :U 74 ]
+"175
+[; ;main.c: 175:         while(!RA1)
+[e $ ! _RA1 75  ]
+[e :U 76 ]
+"179
+[; ;main.c: 179:         while(RA1)
+[e $U 77  ]
+[e :U 78 ]
+"180
+[; ;main.c: 180:         {
+{
+"182
+[; ;main.c: 182:         }
+}
+[e :U 77 ]
+"179
+[; ;main.c: 179:         while(RA1)
+[e $ _RA1 78  ]
+[e :U 79 ]
+"183
+[; ;main.c: 183:         DHT_read_data();
+[e ( _DHT_read_data ..  ]
+"185
+[; ;main.c: 185:         char humidity[5];
+[v _humidity `uc ~T0 @X0 -> 5 `i a ]
+"186
+[; ;main.c: 186:         humidity[4]=0x00;
+[e = *U + &U _humidity * -> -> -> 4 `i `ui `ux -> -> # *U &U _humidity `ui `ux -> -> 0 `i `uc ]
+"187
+[; ;main.c: 187:         humidity[3] = RH % 10 + 0x30;
+[e = *U + &U _humidity * -> -> -> 3 `i `ui `ux -> -> # *U &U _humidity `ui `ux -> + % _RH -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"188
+[; ;main.c: 188:         humidity[2] = '.';
+[e = *U + &U _humidity * -> -> -> 2 `i `ui `ux -> -> # *U &U _humidity `ui `ux -> -> 46 `ui `uc ]
+"189
+[; ;main.c: 189:         RH = RH / 10;
+[e = _RH / _RH -> -> 10 `i `ui ]
+"190
+[; ;main.c: 190:         humidity[1] = RH % 10 + 0x30;
+[e = *U + &U _humidity * -> -> -> 1 `i `ui `ux -> -> # *U &U _humidity `ui `ux -> + % _RH -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"191
+[; ;main.c: 191:         RH = RH / 10;
+[e = _RH / _RH -> -> 10 `i `ui ]
+"192
+[; ;main.c: 192:         humidity[0] = RH % 10 + 0x30;
+[e = *U + &U _humidity * -> -> -> 0 `i `ui `ux -> -> # *U &U _humidity `ui `ux -> + % _RH -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"194
+[; ;main.c: 194:         char temperature[6];
+[v _temperature `uc ~T0 @X0 -> 6 `i a ]
+"195
+[; ;main.c: 195:         temperature[0] = '+';
+[e = *U + &U _temperature * -> -> -> 0 `i `ui `ux -> -> # *U &U _temperature `ui `ux -> -> 43 `ui `uc ]
+"196
+[; ;main.c: 196:         if(T & 0x8000)
+[e $ ! != & _T -> 32768 `ui -> -> 0 `i `ui 80  ]
+"197
+[; ;main.c: 197:             temperature[0] = '-';
+[e = *U + &U _temperature * -> -> -> 0 `i `ui `ux -> -> # *U &U _temperature `ui `ux -> -> 45 `ui `uc ]
+[e :U 80 ]
+"198
+[; ;main.c: 198:         T = T & 0x7FFF;
+[e = _T & _T -> -> 32767 `i `ui ]
+"199
+[; ;main.c: 199:         temperature[5]=0x00;
+[e = *U + &U _temperature * -> -> -> 5 `i `ui `ux -> -> # *U &U _temperature `ui `ux -> -> 0 `i `uc ]
+"200
+[; ;main.c: 200:         temperature[4] = T % 10 + 0x30;
+[e = *U + &U _temperature * -> -> -> 4 `i `ui `ux -> -> # *U &U _temperature `ui `ux -> + % _T -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"201
+[; ;main.c: 201:         temperature[3] = '.';
+[e = *U + &U _temperature * -> -> -> 3 `i `ui `ux -> -> # *U &U _temperature `ui `ux -> -> 46 `ui `uc ]
+"202
+[; ;main.c: 202:         T = T / 10;
+[e = _T / _T -> -> 10 `i `ui ]
+"203
+[; ;main.c: 203:         temperature[2] = T % 10 + 0x30;
+[e = *U + &U _temperature * -> -> -> 2 `i `ui `ux -> -> # *U &U _temperature `ui `ux -> + % _T -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"204
+[; ;main.c: 204:         T = T / 10;
+[e = _T / _T -> -> 10 `i `ui ]
+"205
+[; ;main.c: 205:         temperature[1] = T % 10 + 0x30;
+[e = *U + &U _temperature * -> -> -> 1 `i `ui `ux -> -> # *U &U _temperature `ui `ux -> + % _T -> -> 10 `i `ui -> -> 48 `i `ui `uc ]
+"207
+[; ;main.c: 207:         VFD_init();
+[e ( _VFD_init ..  ]
+"208
+[; ;main.c: 208:         VFD_padding(offsetRH);
+[e ( _VFD_padding (1 _offsetRH ]
+"209
+[; ;main.c: 209:         VFD_printf("Humidity: ");
+[e ( _VFD_printf (1 :s 2C ]
+"210
+[; ;main.c: 210:         VFD_printf(humidity);
+[e ( _VFD_printf (1 &U _humidity ]
+"211
+[; ;main.c: 211:         _delay((unsigned long)((1000)*((4 *1000000UL)/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000.0 `ul ]
+"213
+[; ;main.c: 213:         VFD_init();
+[e ( _VFD_init ..  ]
+"214
+[; ;main.c: 214:         VFD_padding(offsetT);
+[e ( _VFD_padding (1 _offsetT ]
+"215
+[; ;main.c: 215:         VFD_printf("Temperature: ");
+[e ( _VFD_printf (1 :s 3C ]
+"216
+[; ;main.c: 216:         VFD_printf(temperature);
+[e ( _VFD_printf (1 &U _temperature ]
+"217
+[; ;main.c: 217:         _delay((unsigned long)((1000)*((4 *1000000UL)/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> * -> -> -> 4 `i `l `ul -> 1000000 `ul `d .4000.0 `ul ]
+"219
+[; ;main.c: 219:         offsetRH = offsetRH + dirRH;
+[e = _offsetRH -> + -> _offsetRH `i -> _dirRH `i `uc ]
+"220
+[; ;main.c: 220:         if (offsetRH == 6)
+[e $ ! == -> _offsetRH `i -> 6 `i 81  ]
+"221
+[; ;main.c: 221:             dirRH = -1;
+[e = _dirRH -> -U -> 1 `i `uc ]
+[e :U 81 ]
+"222
+[; ;main.c: 222:         if (offsetRH == 0)
+[e $ ! == -> _offsetRH `i -> 0 `i 82  ]
+"223
+[; ;main.c: 223:             dirRH = 1;
+[e = _dirRH -> -> 1 `i `uc ]
+[e :U 82 ]
+"225
+[; ;main.c: 225:         offsetT = offsetT + dirT;
+[e = _offsetT -> + -> _offsetT `i -> _dirT `i `uc ]
+"226
+[; ;main.c: 226:         if (offsetT == 2)
+[e $ ! == -> _offsetT `i -> 2 `i 83  ]
+"227
+[; ;main.c: 227:             dirT = -1;
+[e = _dirT -> -U -> 1 `i `uc ]
+[e :U 83 ]
+"228
+[; ;main.c: 228:         if (offsetT == 0)
+[e $ ! == -> _offsetT `i -> 0 `i 84  ]
+"229
+[; ;main.c: 229:             dirT = 1;
+[e = _dirT -> -> 1 `i `uc ]
+[e :U 84 ]
+"230
+[; ;main.c: 230:     }
+}
+[e :U 68 ]
+[e $U 69  ]
+[e :U 70 ]
+"231
+[; ;main.c: 231:     return;
+[e $UE 67  ]
+"232
+[; ;main.c: 232: }
+[e :UE 67 ]
+}
+[a 1C 72 111 119 100 121 33 0 ]
+[a 2C 72 117 109 105 100 105 116 121 58 32 0 ]
+[a 3C 84 101 109 112 101 114 97 116 117 114 101 58 32 0 ]
